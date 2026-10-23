@@ -20,17 +20,23 @@ class ExitV2Tests(unittest.TestCase):
         self.assertGreater(local[..., 1].count_nonzero().item(), 0)
 
     def test_policy_has_no_fixed_direction_under_rotation(self):
+        torch.manual_seed(17)
         env = ExitEnv(self.cfg, 2, 17)
         obs = env.reset("sealed")
         # Controle aussi les vecteurs de message, absents au reset.
         obs[..., -4:-2] = torch.rand_like(obs[..., -4:-2]) - .5
-        net = make_policy(self.cfg, "c4")
-        with torch.no_grad():
-            logits, value = net(obs)
-            rotated, rotated_value = net(rotate_observation(obs, self.cfg.obs_r, self.cfg.H))
         permutation = torch.tensor([0, 3, 4, 2, 1, 5, 6])
-        torch.testing.assert_close(logits, rotated[..., permutation], atol=1e-6, rtol=1e-5)
-        torch.testing.assert_close(value, rotated_value, atol=1e-6, rtol=1e-5)
+        for dtype, tolerance in ((torch.float32, 1e-5), (torch.float64, 1e-10)):
+            with self.subTest(dtype=dtype):
+                net = make_policy(self.cfg, "c4").to(dtype=dtype)
+                observation = obs.to(dtype=dtype)
+                with torch.no_grad():
+                    logits, value = net(observation)
+                    rotated, rotated_value = net(rotate_observation(observation, self.cfg.obs_r, self.cfg.H))
+                # Float32 reductions vary slightly across CPU kernels/PyTorch versions.
+                # Float64 independently checks the symmetry with a strict tolerance.
+                torch.testing.assert_close(logits, rotated[..., permutation], atol=tolerance, rtol=tolerance)
+                torch.testing.assert_close(value, rotated_value, atol=tolerance, rtol=tolerance)
 
     def test_three_consecutive_outside_steps_reward_once(self):
         env = ExitEnv(self.cfg, 2, 12)
