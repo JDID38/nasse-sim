@@ -1,0 +1,16 @@
+{
+  "url": "https://github.com/Nctrn17/nasse-sim/releases/download/v0.2.0/nasse-sim-v2-artifacts.zip",
+  "size": 10990675,
+  "sha256": "494a6dc5055d26a6009bd946ee1c32546a83d8317669459909a9934565168c23",
+  "files": {
+    "campaign/evaluation_v2.json": "4c17a977c70e614ab4df7901f045f867e13d24db36e33b4b2cdeb8116c0d5dc5",
+    "campaign/evaluation_v2.md": "1e5ff43b3b575f514ddf1c1c49da78c8b4bac1ee64e1a86868b180574a25da36",
+    "campaign/summary_v2.json": "6af0ad3458fd33cabe508a75974067cc8311c32a8d8e55156a4a52839928c577",
+    "campaign/runs_exit_0/ckpt_last.pt": "ece1be3e5e96b3693be0c65ba9ec62735b3edf84a59527202ab62cdebfb1df08",
+    "campaign/runs_exit_0/log.json": "db21293e57636eac84669f3a69cc2e47e85c4ea12b24100fcff8b8e7ce825c29",
+    "campaign/runs_exit_1/ckpt_last.pt": "bf270f95dfdc978e56c82d2e746ca95223526514fbe9dba05fd6904f8e90c659",
+    "campaign/runs_exit_1/log.json": "19be3d3a64f2975fc57ace6878cd4c72564562b6fc60b3ac85326a461b1c3ed8",
+    "campaign/runs_exit_2/ckpt_last.pt": "46039fcd6626092f8447dad4503c3a9e241c30c56830e3e2647ae8ea5cb14f6d",
+    "campaign/runs_exit_2/log.json": "abc3ee1351f0377ae79e8f6b9dea131694fe720659315604df78221d188d5646"
+  }
+}
