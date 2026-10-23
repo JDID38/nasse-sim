@@ -11,6 +11,8 @@ Les échanges et contributions en français ou en anglais sont bienvenus.
 5. Exécuter `python -m unittest discover -v` et un petit entraînement v2.
 6. Ouvrir une pull request décrivant le problème, le changement, les vérifications et les limites.
 
+Le `.gitignore` utilise une liste explicite des fichiers publiés à la racine pour protéger les archives et notes locales. Pour ajouter un nouveau fichier source à la racine, ajouter aussi son exception dans cette liste. Vérifier `git diff --cached --stat` avant de committer ; ne pas forcer l'ajout d'un dossier de travail entier.
+
 ## Pour une expérience
 
 Enregistrer version du code, configuration, graines, versions Python/PyTorch/NumPy, matériel et empreintes des checkpoints. Séparer entraînement, validation et test. Comparer des règles simples sur des conditions appariées. Rapporter les échecs, le contrôle sans ouverture, les scores par scénario et la densité ; publier seulement le meilleur score masque la variabilité.
